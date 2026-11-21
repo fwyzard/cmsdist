@@ -1,8 +1,8 @@
-### RPM external openmpi 5.0.11
+### RPM external openmpi 6.0.0rc3
 ## INCLUDE openmpi-opt
 ## INITENV SET OPAL_PREFIX %{i}
 ## INITENV SET PMIX_PREFIX %{i}
-%define branch v5.0.x
+%define branch v6.0.x
 %define tag v%{realversion}
 Source: git+https://github.com/open-mpi/ompi.git?obj=%{branch}/%{tag}&export=%{n}-%{realversion}&submodules=1&output=/%{n}-%{realversion}.tgz
 Patch0: openmpi-setenv-fix
@@ -14,7 +14,6 @@ Requires: hwloc
 Requires: rdma-core
 Requires: xpmem
 Requires: ucx
-Requires: zlib
 
 # external libraries are needed for additional protocols:
 #   --with-mxm:         Mellanox Messaging (depracated, use UCX instead)
@@ -40,7 +39,6 @@ AUTOMAKE_JOBS=%{compiling_processes} ./autogen.pl
   --enable-shared \
   --disable-static \
   --disable-mpi-java \
-  --with-zlib=$ZLIB_ROOT \
   %{!?without_cuda:--with-cuda=$CUDA_ROOT --with-cuda-libdir=$CUDA_ROOT/lib64/stubs} \
   %{!?without_rocm:--with-rocm=$ROCM_HIP_ROOT} \
   --with-hwloc=$HWLOC_ROOT \
@@ -52,7 +50,6 @@ AUTOMAKE_JOBS=%{compiling_processes} ./autogen.pl
   --without-knem \
   --with-xpmem=$XPMEM_ROOT \
   --with-pic \
-  --disable-io-romio \
   --with-gnu-ld \
   --with-pmix=internal
 

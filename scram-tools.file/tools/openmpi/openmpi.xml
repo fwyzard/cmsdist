@@ -1,5 +1,6 @@
-<tool revision="5">
+<tool revision="6">
   <lib name="mpi"/>
+  <lib name="open_mpi"/>
   <client>
     <environment name="LIBDIR"       default="$TOOL_BASE/lib"/>
     <environment name="INCLUDE"      default="$TOOL_BASE/include"/>
